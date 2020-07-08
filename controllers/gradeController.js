@@ -86,6 +86,7 @@ const remove = async (req, res) => {
 
 const removeAll = async (_, res) => {
   try {
+    await gradeModel.deleteMany();
     res.send({
       message: `Grades excluidos`,
     });

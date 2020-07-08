@@ -1,4 +1,3 @@
-import { db } from "../models/index.js";
 import { gradeModel } from "../models/grades.js";
 import { logger } from "../config/logger.js";
 
@@ -85,9 +84,7 @@ const remove = async (req, res) => {
   }
 };
 
-const removeAll = async (req, res) => {
-  // const id = req.params.id;
-
+const removeAll = async (_, res) => {
   try {
     res.send({
       message: `Grades excluidos`,

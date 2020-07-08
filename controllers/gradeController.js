@@ -33,8 +33,11 @@ const findOne = async (req, res) => {
   const id = req.params.id;
 
   try {
-    res.send();
-
+    const grade = await gradeModel.find({ _id: id });
+    if (!grade) {
+      res.status(404).send("Grade not found on database");
+    }
+    res.status(200).send(grade);
     logger.info(`GET /grade - ${id}`);
   } catch (error) {
     res.status(500).send({ message: "Erro ao buscar o Grade id: " + id });

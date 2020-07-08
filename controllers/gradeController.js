@@ -67,9 +67,14 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   const id = req.params.id;
-
   try {
-    res.send({ message: "Grade excluido com sucesso" });
+    const grade = await gradeModel.findByIdAndDelete({
+      _id: id,
+    });
+    if (!grade) {
+      res.status(400).send("Grade not found");
+    }
+    res.status(200).send({ message: "Grade excluido com sucesso" });
 
     logger.info(`DELETE /grade - ${id}`);
   } catch (error) {

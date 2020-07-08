@@ -51,11 +51,12 @@ const update = async (req, res) => {
       message: "Dados para atualizacao vazio",
     });
   }
-
   const id = req.params.id;
-
   try {
-    res.send({ message: "Grade atualizado com sucesso" });
+    const grade = await gradeModel.findOneAndUpdate({ _id: id }, req.body, {
+      new: true,
+    });
+    res.send({ message: "Grade atualizado com sucesso", grade });
 
     logger.info(`PUT /grade - ${id} - ${JSON.stringify(req.body)}`);
   } catch (error) {

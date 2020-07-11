@@ -34,7 +34,7 @@ app.use(
 
 app.use(gradeRouter);
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("API em execucao");
 });
 
